@@ -7,14 +7,20 @@
 
 namespace Wlwd\App;
 
-use Wlwd\App\Controllers\Site\Main;
-
 defined('ABSPATH') or die;
 
 class Router
 {
+    private static $base;
     function init()
     {
-
+        self::$base = empty(self::$base) ? new \Wlwd\App\Controllers\Base() : self::$base;
+        if (is_admin()) {
+            add_action('admin_menu', array(self::$base, 'addMenu'));
+            add_action('network_admin_menu', array(self::$base, 'addMenu'));
+            /*add_action('admin_enqueue_scripts', array(self::$base, 'adminScripts'), 100);*/
+            add_action('admin_footer', array(self::$base, 'menuHideProperties'));
+            add_filter('advanced_woo_discount_rules_conditions', array(self::$base, 'addConditions'));
+        }
     }
 }
