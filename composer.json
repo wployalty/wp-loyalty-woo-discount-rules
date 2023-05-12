@@ -1,0 +1,21 @@
+{
+  "name": "wployalty/wp-loyalty-woo-discount-rules",
+  "description": "WPLoyalty - Woo Discount Rule Compatibility",
+  "type": "project",
+  "license": "GPL2 or Later",
+  "authors": [
+    {
+      "name": "Alagesan S",
+      "email": "alagesan@flycart.org"
+    }
+  ],
+  "minimum-stability": "stable",
+  "require": {
+    "yahnis-elsts/plugin-update-checker": ">=v5.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Wlwd\\": ""
+    }
+  }
+}
