@@ -20,7 +20,10 @@ class Router
             add_action('network_admin_menu', array(self::$base, 'addMenu'));
             /*add_action('admin_enqueue_scripts', array(self::$base, 'adminScripts'), 100);*/
             add_action('admin_footer', array(self::$base, 'menuHideProperties'));
-            add_filter('advanced_woo_discount_rules_conditions', array(self::$base, 'addConditions'));
         }
+        add_action( 'advanced_woo_discount_rules_loaded', function() {
+            add_filter('advanced_woo_discount_rules_conditions', array(self::$base, 'addConditional'));
+        });
+        add_filter('advanced_woo_discount_rules_conditions', array(self::$base, 'addConditions'));
     }
 }

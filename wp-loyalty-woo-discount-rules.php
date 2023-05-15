@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name: WPLoyalty - Woo Discount Rule Compatibility
+ * Plugin Name: WPLoyalty - Woo Discount Rule Integration
  * Plugin URI: https://www.wployalty.net
- * Description: Adds Woo Discount Rule support for WPLoyalty with level condition compatibility
+ * Description: Adds Woo Discount Rule conditional support for WPLoyalty
  * Version: 1.0.0
  * Author: Wployalty
  * Slug: wp-loyalty-woo-discount-rule
@@ -46,7 +46,7 @@ if (!isWployaltyActiveOrNot()) {
     return;
 }
 
-defined('WLWD_PLUGIN_NAME') or define('WLWD_PLUGIN_NAME', 'WPLoyalty - Woo Discount Rule Compatibility');
+defined('WLWD_PLUGIN_NAME') or define('WLWD_PLUGIN_NAME', 'WPLoyalty - Woo Discount Rule Integration');
 defined('WLWD_PLUGIN_VERSION') or define('WLWD_PLUGIN_VERSION', '1.0.0');
 defined('WLWD_PLUGIN_SLUG') or define('WLWD_PLUGIN_SLUG', 'wp-loyalty-woo-discount-rule');
 defined('WLWD_PLUGIN_PATH') or define('WLWD_PLUGIN_PATH', __DIR__ . '/');
