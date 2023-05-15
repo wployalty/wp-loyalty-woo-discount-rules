@@ -12,7 +12,7 @@ class CustomerLevel extends Base
     {
         parent::__construct();
         $this->name = 'customer_level';
-        $this->label = __('Level', 'wp-loyalty-woo-discount-rule');
+        $this->label = __('Customer Level', 'wp-loyalty-woo-discount-rule');
         $this->group = __('Customer', 'wp-loyalty-woo-discount-rule');
         $this->template = WLWD_PLUGIN_PATH . 'App/Views/Admin/Conditions/Customer/level.php';
     }
@@ -20,7 +20,7 @@ class CustomerLevel extends Base
     public function check($cart, $options)
     {
         if (isset($options->value) && isset($options->operator)) {
-            $customer_level = (int)$this->input->post('customer_level', 0);
+            $customer_level = 0;
             if (empty($customer_level) && get_current_user_id()) {
                 $user_email = NULL;
                 $user = (is_user_logged_in()) ? get_user_by('ID', get_current_user_id()) : NULL;
