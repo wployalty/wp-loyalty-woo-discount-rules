@@ -4,7 +4,7 @@
  * Plugin URI: https://www.wployalty.net
  * Description: Adds Woo Discount Rule conditional support for WPLoyalty
  * Version: 1.0.0
- * Author: Wployalty
+ * Author: WPLoyalty
  * Slug: wp-loyalty-woo-discount-rule
  * Text Domain: wp-loyalty-woo-discount-rule
  * Domain Path: /i18n/languages/
