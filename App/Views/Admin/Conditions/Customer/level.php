@@ -6,9 +6,9 @@ defined('ABSPATH') or die;
 echo ($render_saved_condition == true) ? '' : '<div class="customer_level">';
 $operator = isset($options->operator) ? $options->operator : 'in_list';
 $values = isset($options->value) ? $options->value : false;
-$level_model = new Levels();
-$where = 'active=1';
-$available_levels = $level_model->getWhere($where, '*', false);
+
+$available_levels = \Wlwd\App\Helpers\Database::getAvailableLevels();
+
 ?>
 <div class="wdr_shipping_city_group wdr-condition-type-options">
     <div class="wdr-level-method wdr-select-filed-hight">
