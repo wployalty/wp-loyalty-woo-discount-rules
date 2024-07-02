@@ -7,16 +7,21 @@
 
 namespace Wlwd\App\Controllers;
 
-use Wlwd\App\Helpers\Heplers;
-
 
 defined('ABSPATH') or die;
 
 class Base
 {
+    public static function hasAdminPrivilege() {
+        if ( current_user_can( 'manage_woocommerce' ) ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     function addMenu()
     {
-        if (Heplers::hasAdminPrivilege()) {
+        if (self::hasAdminPrivilege()) {
             add_menu_page(__('WPLoyalty - Woo Discount Rule Compatibility', 'wp-loyalty-woo-discount-rule'), __('WPLoyalty - Woo Discount Rule Compatibility', 'wp-loyalty-woo-discount-rule'), 'manage_woocommerce', WLWD_PLUGIN_SLUG, array($this, 'manageLoyaltyPages'), 'dashicons-megaphone', 57);
         }
     }

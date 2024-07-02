@@ -35,4 +35,20 @@ class Database extends Base
         return self::fetchData($query,'multiple');
 
     }
+
+    public static function getPointUserByEmail($user_email){
+        if(!($user_email) || empty($user_email)) return [];
+        $user_email = sanitize_email( $user_email );
+        global $wpdb;
+        $select = ["*"];
+        // table name
+        $table_name = "{$wpdb->prefix}wlr_users";
+
+        // where condition
+        $where = [];
+        $where[]  = $wpdb->prepare( "user_email = %s", [ $user_email ]);
+
+        $query = self::buildQuery($select, $table_name, '', $where, '', '');
+        return self::fetchData($query,'single');
+    }
 }

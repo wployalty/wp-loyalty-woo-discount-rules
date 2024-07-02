@@ -2,8 +2,6 @@
 
 namespace Wlwd\App\Conditions;
 use Wdr\App\Conditions\Base;
-use Wlr\App\Models\Levels;
-use Wlr\App\Models\Users;
 use Wlwd\App\Helpers\Database;
 
 defined('ABSPATH') or die;
@@ -29,8 +27,7 @@ class CustomerLevel extends Base
                     $user_email = isset($user->data->user_email) ? $user->data->user_email : NULL;
                 }
                 if(!empty($user_email)){
-                    $base_helper = new \Wlr\App\Helpers\Base();
-                    $wlr_user = $base_helper->getPointUserByEmail($user_email);
+                    $wlr_user = Database::getPointUserByEmail($user_email);
                     $customer_level = isset($wlr_user->level_id) && !empty($wlr_user->level_id) ? $wlr_user->level_id : 0;
                     if ($customer_level <= 0) {
                         $points = (int)(isset($wlr_user->points) && $wlr_user->points > 0 ? $wlr_user->points : 0);

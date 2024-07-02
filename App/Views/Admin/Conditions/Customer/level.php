@@ -1,8 +1,7 @@
 <?php
 
-use Wlr\App\Models\Levels;
-
 defined('ABSPATH') or die;
+
 echo ($render_saved_condition == true) ? '' : '<div class="customer_level">';
 $operator = isset($options->operator) ? $options->operator : 'in_list';
 $values = isset($options->value) ? $options->value : false;
