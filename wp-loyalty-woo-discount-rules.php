@@ -7,7 +7,7 @@
  * Author: WPLoyalty
  * Slug: wp-loyalty-woo-discount-rule
  * Text Domain: wp-loyalty-woo-discount-rule
- * Requires Plugins: woocommerce,wp-loyalty-rules, woo-discount-rules,
+ * Requires Plugins: woocommerce, wp-loyalty-rules, woo-discount-rules,
  * Domain Path: /i18n/languages/
  * Requires at least: 4.9.0
  * WC requires at least: 6.5
