@@ -3,10 +3,11 @@
  * Plugin Name: WPLoyalty - Discount Rule Integration
  * Plugin URI: https://www.wployalty.net
  * Description: Adds Woo Discount Rule conditional support for WPLoyalty
- * Version: 1.0.1
+ * Version: 1.0.2
  * Author: WPLoyalty
  * Slug: wp-loyalty-woo-discount-rule
  * Text Domain: wp-loyalty-woo-discount-rule
+ * Requires Plugins: woocommerce, wp-loyalty-rules, woo-discount-rules,
  * Domain Path: /i18n/languages/
  * Requires at least: 4.9.0
  * WC requires at least: 6.5
@@ -36,7 +37,7 @@ if (!function_exists('isWployaltyActiveOrNot')) {
         if (is_multisite()) {
             $active_plugins = array_merge($active_plugins, get_site_option('active_sitewide_plugins', array()));
         }
-        return in_array('wp-loyalty-rules/wp-loyalty-rules.php', $active_plugins, false) || in_array('wp-loyalty-rules-lite/wp-loyalty-rules-lite.php', $active_plugins, false) || in_array('wployalty/wp-loyalty-rules-lite.php', $active_plugins, false);
+        return in_array('wp-loyalty-rules/wp-loyalty-rules.php', $active_plugins, false);
     }
 }
 if (!isWployaltyActiveOrNot() || !isWoocommerceActive()) {
@@ -44,7 +45,7 @@ if (!isWployaltyActiveOrNot() || !isWoocommerceActive()) {
 }
 
 defined('WLWD_PLUGIN_NAME') or define('WLWD_PLUGIN_NAME', 'WPLoyalty - Discount Rule Integration');
-defined('WLWD_PLUGIN_VERSION') or define('WLWD_PLUGIN_VERSION', '1.0.1');
+defined('WLWD_PLUGIN_VERSION') or define('WLWD_PLUGIN_VERSION', '1.0.2');
 defined('WLWD_PLUGIN_SLUG') or define('WLWD_PLUGIN_SLUG', 'wp-loyalty-woo-discount-rule');
 defined('WLWD_PLUGIN_PATH') or define('WLWD_PLUGIN_PATH', __DIR__ . '/');
 defined('WLWD_PLUGIN_URL') or define('WLWD_PLUGIN_URL', plugin_dir_url(__FILE__));
