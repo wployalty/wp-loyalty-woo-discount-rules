@@ -11,7 +11,7 @@
  * Domain Path: /i18n/languages/
  * Requires at least: 4.9.0
  * WC requires at least: 6.5
- * WC tested up to: 8.0
+ * WC tested up to: 9.7
  * Contributors: Alagesan
  * Author URI: https://wployalty.net/
  * License: GPLv2 or later
@@ -23,9 +23,9 @@ defined('ABSPATH') or die;
 if (!function_exists('isWoocommerceActive')) {
     function isWoocommerceActive()
     {
-        $active_plugins = apply_filters('active_plugins', get_option('active_plugins', array()));
+        $active_plugins = apply_filters('active_plugins', get_option('active_plugins', []));
         if (is_multisite()) {
-            $active_plugins = array_merge($active_plugins, get_site_option('active_sitewide_plugins', array()));
+            $active_plugins = array_merge($active_plugins, get_site_option('active_sitewide_plugins', []));
         }
         return in_array('woocommerce/woocommerce.php', $active_plugins) || array_key_exists('woocommerce/woocommerce.php', $active_plugins);
     }
@@ -33,9 +33,9 @@ if (!function_exists('isWoocommerceActive')) {
 if (!function_exists('isWployaltyActiveOrNot')) {
     function isWployaltyActiveOrNot()
     {
-        $active_plugins = apply_filters('active_plugins', get_option('active_plugins', array()));
+        $active_plugins = apply_filters('active_plugins', get_option('active_plugins', []));
         if (is_multisite()) {
-            $active_plugins = array_merge($active_plugins, get_site_option('active_sitewide_plugins', array()));
+            $active_plugins = array_merge($active_plugins, get_site_option('active_sitewide_plugins', []));
         }
         return in_array('wp-loyalty-rules/wp-loyalty-rules.php', $active_plugins, false);
     }
