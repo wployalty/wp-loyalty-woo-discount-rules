@@ -1,14 +1,13 @@
 <?php
 
-use Wlr\App\Models\Levels;
-
 defined('ABSPATH') or die;
+
 echo ($render_saved_condition == true) ? '' : '<div class="customer_level">';
 $operator = isset($options->operator) ? $options->operator : 'in_list';
 $values = isset($options->value) ? $options->value : false;
-$level_model = new Levels();
-$where = 'active=1';
-$available_levels = $level_model->getWhere($where, '*', false);
+
+$available_levels = \Wlwd\App\Helpers\Database::getAvailableLevels();
+
 ?>
 <div class="wdr_shipping_city_group wdr-condition-type-options">
     <div class="wdr-level-method wdr-select-filed-hight">
@@ -28,22 +27,13 @@ $available_levels = $level_model->getWhere($where, '*', false);
                 name="conditions[<?php echo (isset($i)) ? esc_attr($i) : '{i}' ?>][options][value][]">
             <?php
             foreach ($available_levels as $level) {
-            if ($values) {
-                $level_name = '';
-                foreach ($values as $value) {
-
-                        if (is_object($level) && $level->id == $value) {
-                            $level_name = $level->name;
-                            break;
-                        }
-                    } ?>
-                    <option value="<?php echo esc_attr($value); ?>" selected><?php echo esc_html($level_name); ?></option>
-                <?php } else{ ?>
+                if(!empty($level->id) && is_array($values) && in_array($level->id, $values)){
+               ?>
+                    <option value="<?php echo esc_attr($level->id); ?>" selected><?php echo esc_html($level->name); ?></option>
+               <?php } else {?>
                 <option value="<?php echo esc_attr($level->id); ?>" ><?php echo esc_html($level->name); ?></option>
-            <?php
-            }
-            }
-            ?>
+            <?php } }?>
+
         </select>
         <span class="wdr_select2_desc_text"><?php esc_html_e('Select customer level', 'wp-loyalty-woo-discount-rule'); ?></span>
     </div>

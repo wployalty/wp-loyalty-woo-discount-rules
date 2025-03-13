@@ -8,33 +8,48 @@
 namespace Wlwd\App\Controllers;
 
 
-use Wlr\App\Helpers\Template;
-use Wlr\App\Helpers\Woocommerce;
-
 defined('ABSPATH') or die;
 
 class Base
 {
+    public static function hasAdminPrivilege() {
+        if ( current_user_can( 'manage_woocommerce' ) ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     function addMenu()
     {
-        if (Woocommerce::hasAdminPrivilege()) {
+        if (self::hasAdminPrivilege()) {
             add_menu_page(__('WPLoyalty - Woo Discount Rule Compatibility', 'wp-loyalty-woo-discount-rule'), __('WPLoyalty - Woo Discount Rule Compatibility', 'wp-loyalty-woo-discount-rule'), 'manage_woocommerce', WLWD_PLUGIN_SLUG, array($this, 'manageLoyaltyPages'), 'dashicons-megaphone', 57);
         }
     }
 
     function manageLoyaltyPages(){
-        if (!Woocommerce::hasAdminPrivilege()) {
-            wp_die(esc_html(__("Don't have access permission", 'wp-loyalty-woo-discount-rule')));
+        $path = WLWD_PLUGIN_PATH . 'App/Views/Admin/main.php';
+        self::renderTemplate($path);
+    }
+
+
+    public static function renderTemplate($file, $data = [], $display = true)
+    {
+        if (!is_string($file) || !is_array($data) || !is_bool($display)) return false;
+
+        $content = '';
+        if (file_exists($file)) {
+            ob_start();
+            extract($data);
+            include $file;
+            $content = ob_get_clean();
         }
-        if (isset($_REQUEST['page']) && $_REQUEST['page'] == WLWD_PLUGIN_SLUG) {
-            $path = WLWD_PLUGIN_PATH . 'App/Views/Admin/main.php';
-            $template = new Template();
-            $main_page_params = array();
-            $template->setData($path, $main_page_params)->display();
+        if ($display) {
+            echo $content;
         } else {
-            wp_die(esc_html(__('Page query params missing...', 'wp-loyalty-woo-discount-rule')));
+            return $content;
         }
     }
+
 
     function menuHideProperties()
     {
