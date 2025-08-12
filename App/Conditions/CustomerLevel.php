@@ -30,7 +30,7 @@ class CustomerLevel extends Base
                     $wlr_user = Database::getPointUserByEmail($user_email);
                     $customer_level = isset($wlr_user->level_id) && !empty($wlr_user->level_id) ? $wlr_user->level_id : 0;
                     if ($customer_level <= 0) {
-                        $points = (int)(isset($wlr_user->points) && $wlr_user->points > 0 ? $wlr_user->points : 0);
+                        $points = (int)(isset($wlr_user->earn_total_point) && $wlr_user->earn_total_point > 0 ? $wlr_user->earn_total_point : 0);
                         $customer_level = Database::getCurrentLevelId($points);
                     }
                 }elseif (isset($options->value) && empty($user_email)) {

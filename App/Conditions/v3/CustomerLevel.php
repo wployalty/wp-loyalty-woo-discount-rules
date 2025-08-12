@@ -59,7 +59,7 @@ class CustomerLevel extends BaseCondition
         $loyalty_user = Database::getPointUserByEmail($user_email);
         $customer_level = isset($loyalty_user->level_id) && !empty($loyalty_user->level_id) ? $loyalty_user->level_id : 0;
         if ($customer_level <= 0) {
-            $points = (int)(isset($wlr_user->points) && $wlr_user->points > 0 ? $wlr_user->points : 0);
+            $points = (int)(isset($wlr_user->earn_total_point) && $wlr_user->earn_total_point > 0 ? $wlr_user->earn_total_point : 0);
             $customer_level = Database::getCurrentLevelId($points);
         }
         if($customer_level <= 0){
