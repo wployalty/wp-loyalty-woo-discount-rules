@@ -91,4 +91,13 @@ class Base
         }
         return $available_conditions;
     }
+
+    function addV3Conditions($conditions){
+        $conditions['customer_level'] = [
+            'label' => __('Customer Level', 'wp-loyalty-woo-discount-rule'),
+            'group' => __( 'Customer', 'wp-loyalty-woo-discount-rule' ),
+            'handler' => '\Wlwd\App\Conditions\v3\CustomerLevel',
+        ];
+        return $conditions;
+    }
 }

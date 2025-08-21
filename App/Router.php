@@ -21,9 +21,10 @@ class Router
             /*add_action('admin_enqueue_scripts', array(self::$base, 'adminScripts'), 100);*/
             add_action('admin_footer', array(self::$base, 'menuHideProperties'));
         }
-        add_action( 'advanced_woo_discount_rules_loaded', function() {
+        /*add_action( 'advanced_woo_discount_rules_loaded', function() {
             add_filter('advanced_woo_discount_rules_conditions', array(self::$base, 'addConditions'));
-        });
+        });*/
         add_filter('advanced_woo_discount_rules_conditions', array(self::$base, 'addConditions'));
+        add_filter( 'wdr_conditions', [self::$base, 'addV3Conditions'] );
     }
 }
