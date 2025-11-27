@@ -62,13 +62,15 @@ if (!class_exists('\Wlwd\App\Router')) {
     }
     require __DIR__ . '/vendor/autoload.php';
 }
-if (class_exists('\Wlwd\App\Router')) {
-    $myUpdateChecker = \YahnisElsts\PluginUpdateChecker\v5\PucFactory::buildUpdateChecker(
-        'https://github.com/wployalty/wployalty_woo_discount_rules',
-        __FILE__,
-        'wp-loyalty-woo-discount-rules'
-    );
-    $myUpdateChecker->getVcsApi()->enableReleaseAssets();
-    $router = new \Wlwd\App\Router();
-    $router->init();
-}
+$myUpdateChecker = \YahnisElsts\PluginUpdateChecker\v5\PucFactory::buildUpdateChecker(
+	'https://github.com/wployalty/wployalty_woo_discount_rules',
+	__FILE__,
+	'wp-loyalty-woo-discount-rules'
+);
+$myUpdateChecker->getVcsApi()->enableReleaseAssets();
+add_action('plugins_loaded', function() {
+	if (class_exists('\Wlwd\App\Router')) {
+		$router = new \Wlwd\App\Router();
+		$router->init();
+	}
+});
